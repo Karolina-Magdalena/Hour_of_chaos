@@ -1,0 +1,54 @@
+#include <iostream>
+
+using namespace std;
+
+string data,cyfra1,cyfra2;
+char wynik[5];
+int godzina,minuta,z,czas,a,b,c,d;
+
+int main()
+{
+    cin>>z;
+    for (int i=1;i<=z;i++)
+    {
+        cin>>data;
+        cyfra1=data.substr(0,2);
+        cyfra2=data.substr(3,2);
+        godzina=atoi(cyfra1.c_str());
+        minuta=atoi(cyfra2.c_str());
+        czas=(godzina*60)+minuta;
+        for (;;)
+        {
+            czas=czas+1;
+            if (czas==1440) {czas=0;}
+            godzina=czas/60;
+            minuta=czas%60;
+            if (godzina==0)
+            {
+                a=minuta%10;
+                b=minuta/10;
+                if (b==0) {cout<<"0"<<godzina<<":"<<"0"<<minuta<<endl; break;}
+                if ((b!=0)&&(b==a)) {cout<<"0"<<godzina<<":"<<minuta<<endl; break;}
+            }
+            if ((godzina<10)&&(godzina!=0))
+            {
+                a=minuta%10;
+                b=minuta/10;
+                if ((godzina==a)&&(b!=0)) {cout<<"0"<<godzina<<":"<<minuta<<endl; break;}
+                if ((godzina==a)&&(b==0)) {cout<<"0"<<godzina<<":"<<"0"<<minuta<<endl; break;}
+                else {continue;}
+            }
+            if (godzina>9)
+            {
+                a=minuta%10;
+                b=minuta/10;
+                c=godzina%10;
+                d=godzina/10;
+                if ((d==a)&&(b==c)&&(b!=0)) {cout<<godzina<<":"<<minuta<<endl; break;}
+                if ((d==a)&&(b==c)&&(b==0)) {cout<<godzina<<":"<<"0"<<minuta<<endl; break;}
+                else {continue;}
+            }
+        }
+    }
+    return 0;
+}

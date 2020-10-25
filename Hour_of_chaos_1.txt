@@ -1,0 +1,109 @@
+#include <iostream>
+
+using namespace std;
+
+string data,cyfra1,cyfra2,cyfra0="0",wynik,dwukropek=":",cyfra;
+int godzina,minuta,z,czas,a,b,c,d;
+
+int main()
+{
+    cin>>z;
+    for (int i=1;i<=z;i++)
+    {
+        cin>>data;
+        wynik="\0";
+        cyfra1=data.substr(0,2);
+        cyfra2=data.substr(3,2);
+        godzina=atoi(cyfra1.c_str());
+        minuta=atoi(cyfra2.c_str());
+        czas=(godzina*60)+minuta;
+        for (;;)
+        {
+            czas=czas+1;
+            if (czas==1440) {czas=0;}
+            godzina=czas/60;
+            minuta=czas%60;
+            if (godzina==0)
+            {
+                a=minuta%10;
+                b=minuta/10;
+                if (b==0)
+                    {
+                        wynik=wynik+cyfra0;
+                        cyfra=to_string(godzina);
+                        wynik=wynik+cyfra;
+                        wynik=wynik+dwukropek;
+                        wynik=wynik+cyfra0;
+                        cyfra=to_string(minuta);
+                        wynik=wynik+cyfra;
+                        cout<<wynik<<endl; break;
+                    }
+                if ((b!=0)&&(b==a))
+                    {
+                        wynik=wynik+cyfra0;
+                        cyfra=to_string(godzina);
+                        wynik=wynik+cyfra;
+                        wynik=wynik+dwukropek;
+                        cyfra=to_string(minuta);
+                        wynik=wynik+cyfra;
+                        cout<<wynik<<endl; break;
+                    }
+            }
+            if ((godzina<10)&&(godzina!=0))
+            {
+                a=minuta%10;
+                b=minuta/10;
+                if ((godzina==a)&&(b!=0))
+                    {
+                        wynik=wynik+cyfra0;
+                        cyfra=to_string(godzina);
+                        wynik=wynik+cyfra;
+                        wynik=wynik+dwukropek;
+                        cyfra=to_string(minuta);
+                        wynik=wynik+cyfra;
+                        cout<<wynik<<endl; break;
+                    }
+                if ((godzina==a)&&(b==0))
+                    {
+                        wynik=wynik+cyfra0;
+                        cyfra=to_string(godzina);
+                        wynik=wynik+cyfra;
+                        wynik=wynik+dwukropek;
+                        wynik=wynik+cyfra0;
+                        cyfra=to_string(minuta);
+                        wynik=wynik+cyfra;
+                        cout<<wynik<<endl; break;
+                    }
+                else {continue;}
+            }
+            if (godzina>9)
+            {
+                a=minuta%10;
+                b=minuta/10;
+                c=godzina%10;
+                d=godzina/10;
+                if ((d==a)&&(b==c)&&(b!=0))
+                    {
+                        cyfra=to_string(godzina);
+                        wynik=wynik+cyfra;
+                        wynik=wynik+dwukropek;
+                        cyfra=to_string(minuta);
+                        wynik=wynik+cyfra;
+                        cout<<wynik<<endl; break;
+                    }
+                if ((d==a)&&(b==c)&&(b==0))
+                    {
+                        cyfra=to_string(godzina);
+                        wynik=wynik+cyfra;
+                        wynik=wynik+dwukropek;
+                        wynik=wynik+cyfra0;
+                        cyfra=to_string(minuta);
+                        wynik=wynik+cyfra;
+                        cout<<wynik<<endl; break;
+                    }
+                else {continue;}
+            }
+        }
+    }
+    return 0;
+}
